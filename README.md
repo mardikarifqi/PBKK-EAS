@@ -20,7 +20,7 @@ Aplikasi ini adalah sistem sederhana bagi administrator untuk mencatat daftar do
 
 3. Tuliskan dan jelaskan controller (beserta fungsi-fungsinya) apa saja untuk membuat sistem di atas.
    
-    Di sistem ini terdapat 3 controller. `IndexController` berfungsi sebagai halaman welcome, **`LoginController`** berfungsi untuk menghandle session dan proses log-in, `DashboardController` berfungsi untuk menghandle proses input dan penampilan rekapitulasi data.
+    Di sistem ini terdapat 3 controller. `IndexController` berfungsi sebagai halaman welcome, `LoginController` berfungsi untuk menghandle session dan proses log-in, `DashboardController` berfungsi untuk menghandle proses input dan penampilan rekapitulasi data.
 
 4. Tuliskan dan jelaskan nama-nama kelas model yang harus disiapkan
 
