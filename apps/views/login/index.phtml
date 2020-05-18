@@ -1,0 +1,11 @@
+<form action="/login" method="post">
+    Email: <input type="email" class="form-control" name="email" autofocus><br>
+    Password: <input type="password" class="form-control" name="password"><br>
+    <button type="submit">Login</button>
+</form>
+
+<?php if ($showPesanError) : ?>
+    <script>
+        alert("Email atau Password salah!")
+    </script>
+<?php endif ?>

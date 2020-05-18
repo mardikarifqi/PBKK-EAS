@@ -1,0 +1,72 @@
+<p><a href="/login/logout">Keluar</a> dari sistem. | <a href="/dashboard/new">Catat Bantuan</a></p>
+
+<div>
+    Filter Kategori:
+    <select id="daftarkategori">
+        <option value="nul" <?php echo $jenis == 'nul' ? "selected" : "" ?>>-Semua-</option>
+        <?php foreach ($kat as $k) : ?>
+            <option value="<?php echo strip_tags($k) ?>" <?php echo $jenis == $k ? "selected" : "" ?>><?php echo strip_tags($k) ?></option>
+        <?php endforeach ?>
+    </select>
+</div>
+
+<hr>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Donatur</th>
+                <th>Waktu</th>
+                <th>Jenis</th>
+                <th>Jumlah</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($data as $donatur) : $bb = $donatur->data_bantuan->toArray(); ?>
+                <?php
+                if ($jenis == 'nul') {
+                    $bantuan = [];
+                    foreach ($bb as $b) {
+                        $bantuan[] = (object) $b;
+                    }
+                } else {
+                    $bantuan = [];
+                    foreach ($bb as $b) {
+                        if ($b['jenis'] == $jenis) {
+                            $bantuan[] = (object) $b;
+                        }
+                    }
+                }
+                ?>
+
+                <?php if (empty($bantuan)) continue ?>
+
+                <tr>
+                    <td rowspan="<?php echo count($bantuan) ?>"><?php echo strip_tags($donatur->donatur) ?></td>
+                    <td rowspan="<?php echo count($bantuan) ?>"><?php echo strftime("%c", $donatur->time) ?></td>
+                    <td><?php echo strip_tags($bantuan[0]->jenis) ?></td>
+                    <td><?php echo strip_tags($bantuan[0]->jumlah) ?></td>
+                </tr>
+                <?php try { ?>
+                    <?php foreach ($bantuan as $i => $data) : if ($i == 0) continue; ?>
+                    <tr>
+                            <td><?php echo strip_tags($data->jenis) ?></td>
+                            <td><?php echo strip_tags($data->jumlah) ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                <?php } catch (\Throwable $e) {
+                } ?>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $("#daftarkategori").on('input', function() {
+        let a = new URL(location)
+        a.searchParams.delete('filter')
+        a.searchParams.set('filter', this.value)
+        location = a
+    })
+</script>

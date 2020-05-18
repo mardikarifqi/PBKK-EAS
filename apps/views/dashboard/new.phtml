@@ -1,0 +1,29 @@
+<p><a href="/dashboard">< Back</a></p>
+<h3>Input Data</h3>
+
+<form action="" method="post">
+    Nama Donatur: <input type="text" class="form-control" name="donatur"> <br>
+    <div id="bantuans">
+        <div id="bantuan">
+            <hr>
+            Jenis Bantuan:
+            <select class="custom-select" name="jenis[]">
+                <option value="Bahan Makanan">Bahan Makanan</option>
+                <option value="Uang Tunai">Uang Tunai</option>
+                <option value="Obat-obatan">Obat-obatan</option>
+            </select> <br>
+            Jumlah: <input type="text" class="form-control" name="jumlah[]">
+        </div>
+    </div>
+    <hr>
+    <button type="button" id="tambahBantuan">Tambah Bantuan</button>
+    <hr>
+    <button type="submit">Simpan</button>
+</form>
+
+<script>
+    $("#tambahBantuan").click(function() {
+        let a = $("#bantuan").first().clone()
+        $('#bantuans').append(a)
+    })
+</script>
